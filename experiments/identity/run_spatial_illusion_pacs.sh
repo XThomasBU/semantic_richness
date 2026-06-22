@@ -14,12 +14,12 @@ set -euo pipefail
 module load miniconda
 conda activate transformers4571
 
-# Spatial Illusion (PACS rotation): zmeurer pac/rotation_recog protocol
+# Spatial Illusion (PACS rotation): PACS rotation_recog protocol
 #   - Data: pass via --data_dir argument
 #   - 200 balanced samples per domain; positive = X vs rotate(X); negative = X vs Y
 #   - Domains: art_painting, cartoon, photo, sketch (all by default)
 #
-# Optional per-domain parallel jobs (like zmeurer run_rotation_recog_parallel.sh):
+# Optional per-domain parallel jobs:
 #   #$ -t 1-4
 #   and set USE_DOMAIN_ARRAY=1 below.
 

@@ -1,7 +1,7 @@
 """
 Spatial Illusion (PACS): Rotation invariance vs. semantic familiarity on PACS domains.
 
-Uses zmeurer's PACS rotation protocol (pac/rotation_recog.py):
+Uses PACS rotation protocol (pac/rotation_recog.py):
   - Data: pass via --data_dir argument
   - Sample 200 images per domain (balanced across 7 classes) via flwrlabs/pacs
   - Positive: image X vs image X rotated by angle (PIL rotate, expand=False)
@@ -34,7 +34,7 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspa
 from models.infer import InferenceModel
 from google.genai.errors import ServerError
 
-# zmeurer PACS paths / protocol defaults
+# PACS paths / protocol defaults
 DEFAULT_PACS_DATA_DIR = None
 PACS_DOMAINS = ["art_painting", "cartoon", "photo", "sketch"]
 SAMPLES_PER_DOMAIN = 200
@@ -174,7 +174,7 @@ def _model_slug(model_name: str) -> str:
 
 
 def list_pacs_image_paths(data_dir: str) -> List[str]:
-    """Same global sort order as zmeurer pac/rotation_recog.py."""
+    """Same global sort order as pac/rotation_recog.py."""
     names = sorted(
         [n for n in os.listdir(data_dir) if n.lower().endswith(".png")],
         key=lambda x: int(re.search(r"_\d+\.png", x).group().strip("_.png")),
@@ -201,7 +201,7 @@ def sample_pacs_indices_for_domain(
     seed: int = 42,
 ) -> List[int]:
     """
-    Replicate zmeurer rotation_recog HF sampling: balanced classes per domain.
+    Replicate rotation_recog HF sampling: balanced classes per domain.
     Returns global indices into list_pacs_image_paths(data_dir).
     """
     from datasets import load_dataset
@@ -302,7 +302,7 @@ def run_spatial_illusion_pacs_experiment(
     logger.info("=" * 80)
     logger.info("SPATIAL ILLUSION (PACS ROTATION) EXPERIMENT")
     logger.info("=" * 80)
-    logger.info(f"PACS data dir (zmeurer): {data_dir}")
+    logger.info(f"PACS data dir: {data_dir}")
     logger.info(f"Model: {model_config.get('model_name', 'unknown')}")
     logger.info(f"Domains: {domains}")
     logger.info(f"Samples per domain: {samples_per_domain}")
@@ -623,13 +623,13 @@ def run_spatial_illusion_pacs_experiment(
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
-        description="Spatial Illusion rotation experiment on PACS (zmeurer protocol)"
+        description="Spatial Illusion rotation experiment on PACS"
     )
     parser.add_argument(
         "--data_dir",
         type=str,
         default=DEFAULT_PACS_DATA_DIR,
-        help="Directory with PACS PNGs (zmeurer pac/data).",
+        help="Directory with PACS PNGs.",
     )
     parser.add_argument(
         "--domain",

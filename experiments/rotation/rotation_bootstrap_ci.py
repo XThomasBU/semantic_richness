@@ -8,7 +8,7 @@ Categories (matching paper plots):
   - Handwritten English
   - Times New Roman
 
-Reads CSVs from zmeurer's repo (read-only); writes under experiments/rotation/rotation_bootstrap_ci/results/.
+Reads CSVs (read-only); writes under experiments/rotation/rotation_bootstrap_ci/results/.
 """
 
 from __future__ import annotations

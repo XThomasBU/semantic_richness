@@ -15,9 +15,9 @@ set -euo pipefail
 module load miniconda
 conda activate blind
 
-# Spatial Illusion (rotation): rotation_recog protocol — zmeurer images_original +
+# Spatial Illusion (rotation): rotation_recog protocol — images_original +
 # precomputed images_rotated; negative distractors upright; first stroke per character.
-# Same DATA_DIR as zmeurer/omniglot/run_rotation_recog.sh
+# Same DATA_DIR as rotation experiment
 
 BASE_DIR="$(cd "$(dirname "$0")/../.." && pwd)"
 ROTATION_DATA_DIR="${BASE_DIR}/DATA/omniglot-master/python"

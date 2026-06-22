@@ -15,4 +15,5 @@ DATA/
 TEMP/
 logs/
 results/
-demo/output/
+demo/output/*
+!demo/output/cosine_similarity_avg.png

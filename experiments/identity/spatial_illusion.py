@@ -45,7 +45,7 @@ from models.infer import InferenceModel
 from google.genai.errors import ServerError
 
 # --- CONFIGURATION ---
-# Precomputed rotations live under zmeurer's omniglot python dir (see run_rotation_recog.sh).
+# Precomputed rotations (see run_rotation_recog.sh).
 DEFAULT_ROTATION_DATA_DIR = (
     None
 )
@@ -210,7 +210,7 @@ def resolve_rotation_data_dir(
 ) -> str:
     """Resolve python dir with images_original + images_rotated.
 
-    Defaults to zmeurer's precomputed rotation tree (DEFAULT_ROTATION_DATA_DIR).
+    Defaults to the precomputed rotation tree (DEFAULT_ROTATION_DATA_DIR).
     Pass explicit_dir (or --rotation_data_dir) only to override.
     """
     del base_dir  # kept for backward-compatible call sites
@@ -1373,7 +1373,7 @@ def run_spatial_illusion_experiment(
     Args:
         alphabet_dir: (Legacy) unused for image loading; kept for CLI compatibility
         omniglot_dir: (Legacy) unused for image loading; kept for CLI compatibility
-        rotation_data_dir: zmeurer python dir with images_original/images_rotated
+        rotation_data_dir: dir with images_original/images_rotated
         model_config: Model configuration dictionary
         num_samples: (Unused) kept for backward compatibility
         positive_ratio: (Unused) both pos/neg run per char×angle
@@ -1414,7 +1414,7 @@ def run_spatial_illusion_experiment(
         raise e
 
     data_dir = resolve_rotation_data_dir(omniglot_dir, rotation_data_dir)
-    logger.info(f"Rotation data dir (zmeurer): {data_dir}")
+    logger.info(f"Rotation data dir: {data_dir}")
 
     logger.info("Loading alphabet entries (images_original/times_new_roman)...")
     alphabet_entries = load_rotation_recog_alphabet(data_dir)
